@@ -10,7 +10,12 @@
     </div>
 
     <div class="todo-list">
-      <Todo :todo="todo" v-for="todo in todoList" :key="todo.name" />
+      <Todo
+        :todo="todo"
+        v-for="todo in todoList"
+        :key="todo.name"
+        v-on:removed="removed"
+      />
     </div>
   </div>
 </template>
@@ -56,6 +61,11 @@ export default Vue.extend({
         i.name === this.valueInput ? true : false
       );
       return isRegitred.includes(true);
+    },
+
+    removed(todo: TodoInterface): void {
+      let newArray = this.todoList.filter(t => t.name !== todo.name);
+      this.todoList = [...newArray];
     }
   },
   watch: {

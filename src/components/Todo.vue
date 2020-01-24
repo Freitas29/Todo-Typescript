@@ -4,6 +4,8 @@
     @click="handleTodo(todo)"
   >
     <p>{{ todo.name }}</p>
+
+    <span class="float-button" @click="remove">&#128500;</span>
   </div>
 </template>
 
@@ -19,6 +21,9 @@ export default Vue.extend({
   methods: {
     handleTodo(todo: TodoInterface): void {
       todo.finished = !todo.finished;
+    },
+    remove(): void {
+      this.$emit("removed", this.todo);
     }
   }
 });
@@ -42,6 +47,7 @@ $success: #27ce7a
     text-transform: capitalize
     transition: all 0.5s
     cursor: pointer
+    position: relative
 
     &:hover
       transform: scale(1.1)
@@ -52,4 +58,11 @@ $success: #27ce7a
 .completed
   background-color: #6ab04c
   text-decoration: line-through
+
+.float-button
+  font-size: 30px
+  position: absolute
+  top: 0px
+  right: 10px
+  z-index: 99
 </style>
