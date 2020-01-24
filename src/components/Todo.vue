@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { ArrayPropsDefinition } from "vue/types/options";
+import { TodoInterface } from "../types/todo";
 
 export default Vue.extend({
   name: "Todo" as string,
@@ -17,7 +17,7 @@ export default Vue.extend({
     todo: Object
   },
   methods: {
-    handleTodo(todo: Object<todo>): void {
+    handleTodo(todo: TodoInterface): void {
       todo.finished = !todo.finished;
     }
   }
